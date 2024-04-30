@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
+
 
 @dataclass
 class Event:
@@ -13,6 +14,7 @@ class Event:
     _date_event_began: datetime
     _date_event_finished: datetime
     _demand_loss: int
+    durata: timedelta
 
     @property
     def id(self):
@@ -61,6 +63,14 @@ class Event:
         return (f"id={self._id}, customers_affected={self._customers_affected} "
                 f"start_time={self._date_event_began}, end_time= {self._date_event_finished}")
 
+    def __repr__(self):
+        return (f"Event(id={self._id}, customers_affected={self._customers_affected} "
+                f"start_time={self._date_event_began}, end_time= {self._date_event_finished} "
+                f"tot_time={self.durata})")
+
     def __hash__(self):
         return hash(self._id)
 
+if __name__ == '__main__':
+    e = Event()
+    e.durata.seconds

@@ -14,7 +14,19 @@ class Controller:
 
     def handleWorstCase(self, e):
         # TO FILL
-        pass
+        global max_anni, max_ore
+
+        nerc = self._view._nerc
+        if nerc is None:
+            self._view.create_alert('Selezionare un NERC')
+        else:
+            try:
+                max_anni = int(self._view._txtYears.value)
+                max_ore = int(self._view._txtHours.value)
+                self._model.worstCase(nerc, max_anni, max_ore)
+            except ValueError:
+                self._view.create_alert('Inserire dei numeri')
+
 
     def fillDD(self):
         nercList = self._model.listNerc

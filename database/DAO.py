@@ -14,7 +14,7 @@ class DAO():
         result = []
 
         cursor = conn.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """
+        query = """ select * from nerc """
 
         cursor.execute(query)
 
@@ -32,7 +32,9 @@ class DAO():
         result = []
 
         cursor = conn.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """
+        query = """ select *
+                    from poweroutages
+                    where nerc_id = %s"""
 
         cursor.execute(query, (nerc.id,))
 
@@ -42,7 +44,8 @@ class DAO():
                       row["tag_id"], row["area_id"],
                       row["nerc_id"], row["responsible_id"],
                       row["customers_affected"], row["date_event_began"],
-                      row["date_event_finished"], row["demand_loss"]))
+                      row["date_event_finished"], row["demand_loss"], row["date_event_finished"]
+                      - row["date_event_began"]))
 
         cursor.close()
         conn.close()

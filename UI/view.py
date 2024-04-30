@@ -28,6 +28,7 @@ class View(ft.UserControl):
         self._logo = None
         self._txtYears = None
         self._ddNerc = None
+        self._nerc = None
 
     def load_interface(self):
         # title
@@ -41,7 +42,7 @@ class View(ft.UserControl):
                               height=500,
                               )
 
-        self._ddNerc = ft.Dropdown(label="Select NERC")
+        self._ddNerc = ft.Dropdown(label="Select NERC", on_change=self.select_nerc)
 
 
         self._txtYears = ft.TextField(label="Insert max years")
@@ -82,3 +83,6 @@ class View(ft.UserControl):
 
     def update_page(self):
         self._page.update()
+
+    def select_nerc(self, e):
+        self._nerc = self.controller._idMap[e.control.value]
