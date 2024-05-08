@@ -61,7 +61,8 @@ class Event:
         #         f"start_time={self._date_event_began}, end_time= {self._date_event_finished}]")
 
         return (f"id={self._id}, customers_affected={self._customers_affected} "
-                f"start_time={self._date_event_began}, end_time= {self._date_event_finished}")
+                f"start_time={self._date_event_began}, end_time= {self._date_event_finished} "
+                f"tot_time={self.durata}")
 
     def __repr__(self):
         return (f"Event(id={self._id}, customers_affected={self._customers_affected} "
@@ -73,4 +74,4 @@ class Event:
 
 if __name__ == '__main__':
     e = Event()
-    e.durata.seconds
+    e.durata.total_seconds()

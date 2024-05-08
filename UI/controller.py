@@ -16,6 +16,8 @@ class Controller:
         # TO FILL
         global max_anni, max_ore
 
+        self._view._txtOut.controls = []
+
         nerc = self._view._nerc
         if nerc is None:
             self._view.create_alert('Selezionare un NERC')
@@ -24,6 +26,9 @@ class Controller:
                 max_anni = int(self._view._txtYears.value)
                 max_ore = int(self._view._txtHours.value)
                 self._model.worstCase(nerc, max_anni, max_ore)
+                self._view._txtOut.controls.append(ft.Text(self._model._solBest))
+                self._view.update_page()
+
             except ValueError:
                 self._view.create_alert('Inserire dei numeri')
 
